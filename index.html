@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Lumière — Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1a17;
+    --cream: #faf7f2;
+    --gold: #b08d57;
+    --muted: #8a8378;
+    --line: #e5dfd4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+  /* Header */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 5vw;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .logo span { color: var(--gold); }
+  nav a {
+    margin-left: 2.2rem; text-decoration: none; color: var(--ink);
+    font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+    transition: color .3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 0 6vw;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(176,141,87,0.08), transparent 60%),
+      var(--cream);
+  }
+  .hero .eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.6rem;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem); line-height: 1.05; font-weight: 500;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p {
+    max-width: 480px; margin-top: 1.8rem; color: var(--muted); font-size: 1.05rem;
+  }
+  .btn {
+    display: inline-block; margin-top: 2.6rem;
+    padding: 0.95rem 2.8rem;
+    border: 1px solid var(--ink); color: var(--ink);
+    font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+    text-decoration: none; transition: all .35s;
+  }
+  .btn:hover { background: var(--ink); color: var(--cream); }
+
+  /* Sections */
+  section { padding: 7rem 6vw; }
+  .section-head { text-align: center; margin-bottom: 4rem; }
+  .section-head .eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 0.9rem;
+  }
+  .section-head h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+  .divider {
+    width: 48px; height: 1px; background: var(--gold);
+    margin: 1.4rem auto 0;
+  }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-visual {
+    aspect-ratio: 4/5;
+    background: linear-gradient(160deg, #efe9de, #e2d9c8);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+  }
+  .about-visual::after {
+    content: '✦'; font-size: 3rem; color: var(--gold); opacity: .5;
+  }
+  .about-text h2 { font-size: 2.4rem; margin-bottom: 1.4rem; }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; }
+  .about-text .signature {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.3rem; color: var(--gold); margin-top: 1.8rem;
+  }
+
+  /* Menu */
+  .menu { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .menu-grid { max-width: 760px; margin: 0 auto; }
+  .menu-category { margin-bottom: 3.5rem; }
+  .menu-category h3 {
+    font-size: 1.5rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: center; margin-bottom: 2rem; color: var(--gold);
+    font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.85rem;
+  }
+  .dish {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+  }
+  .dish:last-child { border-bottom: none; }
+  .dish-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; }
+  .dish-desc { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
+  .dish-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); white-space: nowrap; }
+
+  /* Info */
+  .info-grid {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: center;
+  }
+  .info-item h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+  .info-item p { color: var(--muted); font-size: 0.95rem; }
+  .info-item a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); transition: color .3s; }
+  .info-item a:hover { color: var(--gold); }
+
+  /* Footer */
+  footer {
+    padding: 3rem 6vw; text-align: center;
+    border-top: 1px solid var(--line);
+    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  }
+  footer .logo { font-size: 1.1rem; margin-bottom: 1rem; }
+
+  @media (max-width: 760px) {
+    nav { display: none; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .info-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    section { padding: 5rem 7vw; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Maison <span>Lumière</span></div>
+  <nav>
+    <a href="#maison">La Maison</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Cuisine française · Depuis 1987</p>
+  <h1>L'art de la table,<br><em>sublimé</em></h1>
+  <p>Une cuisine de saison, des produits d'exception et une atmosphère feutrée au cœur de la ville.</p>
+  <a href="#menu" class="btn">Découvrir le menu</a>
+</section>
+
+<section id="maison">
+  <div class="about">
+    <div class="about-visual"></div>
+    <div class="about-text">
+      <span class="eyebrow" style="font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem;">La Maison</span>
+      <h2>Une passion transmise depuis trois générations</h2>
+      <p>Depuis 1987, notre maison perpétue l'exigence d'une cuisine française authentique, où chaque assiette raconte une histoire de terroir et de saisonnalité.</p>
+      <p>Nos produits proviennent de producteurs locaux sélectionnés avec soin, pour une gastronomie sincère et raffinée.</p>
+      <p class="signature">— Chef Antoine Moreau</p>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu">
+  <div class="section-head">
+    <span class="eyebrow">Nos suggestions</span>
+    <h2>Le Menu</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-category">
+      <h3>Entrées</h3>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Velouté de châtaignes</div>
+          <div class="dish-desc">Éclats de noisettes torréfiées, huile de truffe</div>
+        </div>
+        <div class="dish-price">16 €</div>
+      </div>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Foie gras mi-cuit</div>
+          <div class="dish-desc">Chutney de figues, brioche toastée</div>
+        </div>
+        <div class="dish-price">22 €</div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3>Plats</h3>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Filet de bœuf Rossini</div>
+          <div class="dish-desc">Purée de pommes de terre à la truffe noire</div>
+        </div>
+        <div class="dish-price">42 €</div>
+      </div>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Loup de mer rôti</div>
+          <div class="dish-desc">Beurre blanc aux agrumes, légumes de saison</div>
+        </div>
+        <div class="dish-price">36 €</div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3>Desserts</h3>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Soufflé au Grand Marnier</div>
+          <div class="dish-desc">Glace vanille de Madagascar</div>
+        </div>
+        <div class="dish-price">14 €</div>
+      </div>
+      <div class="dish">
+        <div>
+          <div class="dish-name">Paris-Brest</div>
+          <div class="dish-desc">Praliné noisette maison</div>
+        </div>
+        <div class="dish-price">13 €</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head">
+    <span class="eyebrow">Réservations</span>
+    <h2>Nous Trouver</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="info-grid">
+    <div class="info-item">
+      <h3>Adresse</h3>
+      <p>12 rue des Lilas<br>75004 Paris</p>
+    </div>
+    <div class="info-item">
+      <h3>Horaires</h3>
+      <p>Mardi – Samedi<br>12h – 14h30 · 19h – 22h30</p>
+    </div>
+    <div class="info-item">
+      <h3>Réservation</h3>
+      <p><a href="tel:+33142000000">01 42 00 00 00</a><br><a href="mailto:contact@maisonlumiere.fr">contact@maisonlumiere.fr</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Maison <span style="color:var(--gold)">Lumière</span></div>
+  © 2026 Maison Lumière — Tous droits réservés
+</footer>
+
+</body>
+</html>
